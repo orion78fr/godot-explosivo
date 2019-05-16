@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Board.gd" type="Script" id=1]
+[ext_resource path="res://More colors.gd" type="Script" id=2]
+[ext_resource path="res://Less colors.gd" type="Script" id=3]
+[ext_resource path="res://Score.gd" type="Script" id=4]
+[ext_resource path="res://Button.gd" type="Script" id=5]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0, 0, 0, 0.498039, 0, 0, 0, 0.498039 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 608
+
+[node name="Root" type="Node2D"]
+
+[node name="Board" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="More colors" type="Button" parent="Board"]
+margin_left = 192.0
+margin_top = 960.0
+margin_right = 320.0
+margin_bottom = 992.0
+text = "More colors"
+script = ExtResource( 2 )
+
+[node name="Less colors" type="Button" parent="Board"]
+margin_left = 32.0
+margin_top = 960.0
+margin_right = 160.0
+margin_bottom = 992.0
+text = "Less colors"
+script = ExtResource( 3 )
+
+[node name="Color number label" type="Label" parent="Board"]
+margin_left = 352.0
+margin_top = 960.0
+margin_right = 576.0
+margin_bottom = 992.0
+valign = 1
+
+[node name="Score" type="Label" parent="."]
+margin_right = 608.0
+margin_bottom = 32.0
+align = 1
+valign = 1
+script = ExtResource( 4 )
+
+[node name="Game Over Screen" type="Sprite" parent="."]
+visible = false
+position = Vector2( 305, 512 )
+z_index = 1
+texture = SubResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 608, 1024 )
+
+[node name="Label" type="Label" parent="Game Over Screen"]
+margin_left = -305.0
+margin_top = -512.0
+margin_right = 303.0
+margin_bottom = 512.0
+text = "Game Over"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="Game Over Screen"]
+margin_left = -49.0
+margin_top = 64.0
+margin_right = 47.0
+margin_bottom = 96.0
+text = "Restart"
+script = ExtResource( 5 )

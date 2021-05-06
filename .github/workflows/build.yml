@@ -118,7 +118,7 @@ jobs:
         uses: android-actions/setup-android@v2
       - name: Build
         run: |
-          mkdir -v -p ~/.config/godot/
+          godot -e -q
           echo 'export/android/android_sdk_path = "'${ANDROID_SDK_ROOT}'"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres

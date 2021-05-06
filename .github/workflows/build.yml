@@ -115,6 +115,7 @@ jobs:
           sed 's@keystore/debug=".*"@keystore/debug="'/root/debug.keystore'"@g' -i export_presets.cfg
           sed 's@keystore/debug_user=".*"@keystore/debug_user="androiddebugkey"@g' -i export_presets.cfg
           sed 's@keystore/debug_password=".*"@keystore/debug_password="android"@g' -i export_presets.cfg
+          echo 'export/android/android_sdk_path = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
           mkdir -v -p exports/android
           godot -v --export-debug "Android" exports/android/explosivo.apk
       - name: Upload Artifact

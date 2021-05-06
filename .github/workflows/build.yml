@@ -116,6 +116,8 @@ jobs:
           java-version: 1.8
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
+      - name: DEBUG
+        run: ls -laR ${ANDROID_SDK_ROOT}
       - name: Build
         run: |
           godot -e -q

@@ -112,6 +112,9 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Build
         run: |
+          sed 's@keystore/debug=".*"@keystore/debug="'/root/debug.keystore'"@g' -i export_presets.cfg
+          sed 's@keystore/debug_user=".*"@keystore/debug_user="androiddebugkey"@g' -i export_presets.cfg
+          sed 's@keystore/debug_password=".*"@keystore/debug_password="android"@g' -i export_presets.cfg
           mkdir -v -p exports/android
           godot -v --export-debug "Android" exports/android/explosivo.apk
       - name: Upload Artifact

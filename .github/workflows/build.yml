@@ -23,7 +23,7 @@ jobs:
           mkdir -v -p exports/web
           godot -v --export "Web" exports/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: HTML5 build
           path: exports/web
@@ -46,7 +46,7 @@ jobs:
           mkdir -v -p exports/win
           godot -v --export "Windows" exports/win/${EXPORT_NAME}.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: Windows build
           path: exports/win
@@ -69,7 +69,7 @@ jobs:
           mkdir -v -p exports/lin
           godot -v --export "Linux" exports/lin/${EXPORT_NAME}
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: Linux build
           path: exports/lin
@@ -92,7 +92,7 @@ jobs:
           mkdir -v -p exports/mac
           godot -v --export "Mac" exports/mac/${EXPORT_NAME}
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: MacOSX build
           path: exports/mac
@@ -115,7 +115,7 @@ jobs:
           mkdir -v -p exports/android
           godot -v --export "Android" exports/android/explosivo.apk
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: Android APK
           path: exports/android

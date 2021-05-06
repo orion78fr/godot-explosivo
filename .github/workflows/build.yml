@@ -113,7 +113,7 @@ jobs:
       - name: Build
         run: |
           mkdir -v -p exports/android
-          godot -v --export "Android" exports/android/explosivo.apk
+          godot -v --export-debug "Android" exports/android/explosivo.apk
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:

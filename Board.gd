@@ -85,9 +85,9 @@ func explode(x, y):
 	# print("Exploding ", balls_to_explode.size(), " balls")
 	
 	if balls_to_explode.size() > 1:
-		for p in balls_to_explode:
-			remove_child(board[p])
-			board.erase(p)
+		for b in balls_to_explode:
+			remove_child(board[b])
+			board.erase(b)
 		
 		compact()
 		

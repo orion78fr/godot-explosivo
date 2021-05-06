@@ -1,0 +1,31 @@
+name: Godot build and exports
+on: [push, pull_request]
+
+env:
+  GODOT_VERSION: 3.3
+  EXPORT_NAME: explosivo
+
+jobs:
+  export-web:
+    name: Web export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p exports/web
+          godot -v --export "Web" exports/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: exports/web
+
+

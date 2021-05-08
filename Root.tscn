@@ -40,6 +40,9 @@ margin_top = 704.0
 margin_right = 576.0
 margin_bottom = 736.0
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Score" type="Label" parent="."]
 margin_right = 608.0

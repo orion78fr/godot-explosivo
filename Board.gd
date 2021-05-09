@@ -1,7 +1,5 @@
 extends Node
 
-var Ball = load("res://Ball.tscn");
-
 const X_SIZE = 10
 const Y_SIZE = 15
 
@@ -23,16 +21,22 @@ var COLORS = [
 
 var board = {}
 
+onready var Ball = preload("res://Ball.tscn")
+
+onready var score = $"../Score"
+onready var game_over_screen = $"../Game Over Screen"
+
 # Move things
 func set_sizes():
 	var window_size = Vector2(X_OFFSET * 2 + (X_SIZE-1) * BALL_SIZE, Y_OFFSET * 2 + (Y_SIZE-1) * BALL_SIZE)
 	print(window_size)
 	OS.set_window_size(window_size)
-	get_node("../Score").rect_size.x = window_size.x
+	score.rect_size.x = window_size.x
+	score.rect_position.y = OS.get_window_safe_area().position.y
 	
-	get_node("More colors").rect_position.y = window_size.y - 50
-	get_node("Less colors").rect_position.y = window_size.y - 50
-	get_node("Color number label").rect_position.y = window_size.y - 50
+	$"More colors".rect_position.y = window_size.y - 50
+	$"Less colors".rect_position.y = window_size.y - 50
+	$"Color number label".rect_position.y = window_size.y - 50
 
 func _ready():
 	set_sizes()
@@ -43,16 +47,16 @@ func _ready():
 	reset_game()
 
 func reset_game():
-	get_node("../Game Over Screen").visible = false
+	game_over_screen.visible = false
 	# Reset score
-	get_node("../Score").reset_score()
+	score.reset_score()
 	
 	if num_color < 3:
 		num_color = 3
 	if num_color > COLORS.size():
 		num_color = COLORS.size()
 	
-	get_node("Color number label").text = "Colors : " + str(num_color)
+	$"Color number label".text = "Colors : " + str(num_color)
 	
 	generate_new_board()
 
@@ -77,12 +81,8 @@ func explode(x, y):
 	var p = Vector2(x,y)
 	var color = board[p].color
 	
-	# print("Exploding ", x, ",", y, " with color ", color)
-	
 	var balls_to_explode = {p: true}
 	explore(color, balls_to_explode, p)
-	
-	# print("Exploding ", balls_to_explode.size(), " balls")
 	
 	if balls_to_explode.size() > 1:
 		for b in balls_to_explode:
@@ -91,13 +91,13 @@ func explode(x, y):
 		
 		compact()
 		
-		get_node("../Score").add_to_score(2 * balls_to_explode.size() - 1)
+		score.add_to_score(2 * balls_to_explode.size() - 1)
 		
 		if board_is_locked():
 			if board.empty():
 				generate_new_board()
 			else:
-				get_node("../Game Over Screen").visible = true
+				game_over_screen.visible = true
 
 func get_adjacent(p):
 	return [p+Vector2(-1, 0), p+Vector2(0, -1), p+Vector2(1, 0), p+Vector2(0, 1)]
@@ -161,4 +161,7 @@ func _on_Less_colors_pressed():
 
 func _on_More_colors_pressed():
 	num_color += 1
+	reset_game()
+
+func _on_Reset_pressed():
 	reset_game()

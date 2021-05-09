@@ -38,9 +38,7 @@ func set_sizes():
 	position.x = X_OFFSET
 	position.y = Y_OFFSET + y_safe_area
 	
-	$"More colors".rect_position.y = window_size.y - Y_OFFSET / 2
-	$"Less colors".rect_position.y = window_size.y - Y_OFFSET / 2
-	$"Color number label".rect_position.y = window_size.y - Y_OFFSET / 2
+	$"../Color controls".position.y = window_size.y - (Y_OFFSET / 2)
 
 func _ready():
 	set_sizes()
@@ -60,7 +58,7 @@ func reset_game():
 	if num_color > COLORS.size():
 		num_color = COLORS.size()
 	
-	$"Color number label".text = "Colors : " + str(num_color)
+	$"../Color controls/Color number label".text = "Colors : " + str(num_color)
 	
 	generate_new_board()
 

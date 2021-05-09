@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const X_SIZE = 10
 const Y_SIZE = 15
@@ -26,17 +26,21 @@ onready var Ball = preload("res://Ball.tscn")
 onready var score = $"../Score"
 onready var game_over_screen = $"../Game Over Screen"
 
+onready var y_safe_area = OS.get_window_safe_area().position.y
+
 # Move things
 func set_sizes():
-	var window_size = Vector2(X_OFFSET * 2 + (X_SIZE-1) * BALL_SIZE, Y_OFFSET * 2 + (Y_SIZE-1) * BALL_SIZE)
-	print(window_size)
+	var window_size = Vector2(X_OFFSET * 2 + (X_SIZE-1) * BALL_SIZE, Y_OFFSET * 2 + (Y_SIZE-1) * BALL_SIZE + y_safe_area)
 	OS.set_window_size(window_size)
-	score.rect_size.x = window_size.x
-	score.rect_position.y = OS.get_window_safe_area().position.y
 	
-	$"More colors".rect_position.y = window_size.y - 50
-	$"Less colors".rect_position.y = window_size.y - 50
-	$"Color number label".rect_position.y = window_size.y - 50
+	score.rect_size.x = window_size.x
+	score.rect_position.y = y_safe_area
+	position.x = X_OFFSET
+	position.y = Y_OFFSET + y_safe_area
+	
+	$"More colors".rect_position.y = window_size.y - Y_OFFSET / 2
+	$"Less colors".rect_position.y = window_size.y - Y_OFFSET / 2
+	$"Color number label".rect_position.y = window_size.y - Y_OFFSET / 2
 
 func _ready():
 	set_sizes()

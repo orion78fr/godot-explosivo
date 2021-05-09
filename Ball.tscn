@@ -4,7 +4,7 @@
 [ext_resource path="res://Ball.gd" type="Script" id=2]
 [ext_resource path="res://Area2D.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
 [node name="Sprite" type="Sprite"]
@@ -16,4 +16,4 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 1 )

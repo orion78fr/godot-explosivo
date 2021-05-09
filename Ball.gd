@@ -1,12 +1,8 @@
 extends Sprite
 
-var X_SIZE = -1
-var Y_SIZE = -1
-
-var X_OFFSET = -1
-var Y_OFFSET = -1
-
-var BALL_SIZE = -1
+const X_SIZE = 10
+const Y_SIZE = 15
+const BALL_SIZE = 40
 
 var color = null;
 var x = -1;
@@ -18,19 +14,13 @@ var expected_position = Vector2()
 const GRAVITY = 10
 
 func _ready():
-	X_SIZE = get_parent().X_SIZE
-	Y_SIZE = get_parent().Y_SIZE
-	X_OFFSET = get_parent().X_OFFSET
-	Y_OFFSET = get_parent().Y_OFFSET
-	BALL_SIZE = get_parent().BALL_SIZE
-	
-	self.position = Vector2(X_OFFSET + x * BALL_SIZE, Y_OFFSET + (Y_SIZE - 1 - y) * BALL_SIZE)
+	self.position = Vector2(x * BALL_SIZE, (Y_SIZE - 1 - y) * BALL_SIZE)
 	self.expected_position = position
 
 func set_coords(x, y):
 	self.x = x;
 	self.y = y;
-	self.expected_position = Vector2(X_OFFSET + x * BALL_SIZE, Y_OFFSET + (Y_SIZE - 1 - y) * BALL_SIZE)
+	self.expected_position = Vector2(x * BALL_SIZE, (Y_SIZE - 1 - y) * BALL_SIZE)
 
 func set_color(color, color_id):
 	self.modulate = color

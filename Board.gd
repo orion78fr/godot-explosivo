@@ -155,10 +155,10 @@ func board_is_locked():
 						return false
 	return true
 
-func add_color():
-	num_color += 1
+func _on_Less_colors_pressed():
+	num_color -= 1
 	reset_game()
 
-func remove_color():
-	num_color -= 1
+func _on_More_colors_pressed():
+	num_color += 1
 	reset_game()

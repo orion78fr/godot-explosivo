@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Board.gd" type="Script" id=1]
-[ext_resource path="res://More colors.gd" type="Script" id=2]
-[ext_resource path="res://Less colors.gd" type="Script" id=3]
 [ext_resource path="res://Score.gd" type="Script" id=4]
 [ext_resource path="res://Button.gd" type="Script" id=5]
 
@@ -24,7 +22,6 @@ margin_top = 704.0
 margin_right = 320.0
 margin_bottom = 736.0
 text = "More colors"
-script = ExtResource( 2 )
 
 [node name="Less colors" type="Button" parent="Board"]
 margin_left = 32.0
@@ -32,7 +29,6 @@ margin_top = 704.0
 margin_right = 160.0
 margin_bottom = 736.0
 text = "Less colors"
-script = ExtResource( 3 )
 
 [node name="Color number label" type="Label" parent="Board"]
 margin_left = 352.0
@@ -75,3 +71,6 @@ margin_right = 47.0
 margin_bottom = 96.0
 text = "Restart"
 script = ExtResource( 5 )
+
+[connection signal="pressed" from="Board/More colors" to="Board" method="_on_More_colors_pressed"]
+[connection signal="pressed" from="Board/Less colors" to="Board" method="_on_Less_colors_pressed"]
